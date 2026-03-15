@@ -2,6 +2,7 @@ import { count } from "./commands/count.js";
 import { csvToJson } from "./commands/csv-to-json.js";
 import { decrypt } from "./commands/decrypt.js";
 import { encrypt } from "./commands/encrypt.js";
+import { hash } from "./commands/hash.js";
 import { jsonToCsv } from "./commands/json-to-csv.js";
 import { ls, up } from "./navigation.js";
 import { cd } from "./navigation.js";
@@ -15,7 +16,6 @@ export const COMMANDS = {
   encrypt: encrypt,
   decrypt: decrypt,
   count: count,
-   /* hash: "hash",
-  [hash - compare]: "hash-compare",
-  [log - stats]: "log-stats", */
+  hash: hash,
+  "log-stats": undefined
 };

@@ -10,7 +10,7 @@ export function cd(args) {
   const targetPath = args[0].replace(/^['"]|['"]$/g, '');
   if (targetPath) {
     try {
-      pathResolver(targetPath);
+      process.chdir(pathResolver(targetPath));
       console.log( `Changed directory to ${process.cwd()}` );
     } catch (error) {
       console.log("Operation failed");

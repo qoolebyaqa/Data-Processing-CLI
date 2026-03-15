@@ -1,22 +1,20 @@
 import fs from "fs";
-import path from "path";
 import crypto from "crypto";
 import { pipeline } from "stream/promises";
+import { pathResolver } from "../utils/pathResolver.js";
+import { argParser } from "../utils/argParser.js";
 
 export async function decrypt(args) {
   try {
+    const argsObj = argParser(args);
 
-    const inputIndex = args.indexOf("--input");
-    const outputIndex = args.indexOf("--output");
-    const passwordIndex = args.indexOf("--password");
-
-    if (inputIndex === -1 || outputIndex === -1 || passwordIndex === -1) {
+    if (!argsObj["input"] || !argsObj["output"] || !argsObj["password"]) {
       throw new Error();
     }
 
-    const inputPath = path.resolve(process.cwd(), args[inputIndex + 1]);
-    const outputPath = path.resolve(process.cwd(), args[outputIndex + 1]);
-    const password = args[passwordIndex + 1];
+    const inputPath = pathResolver(argsObj["input"]);
+    const outputPath = pathResolver(argsObj["output"]);
+    const password = argsObj["password"];
 
     if (!fs.existsSync(inputPath)) {
       throw new Error();

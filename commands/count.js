@@ -1,15 +1,16 @@
 import fs from "fs";
-import path from "path";
+import { argParser } from "../utils/argParser.js";
+import { pathResolver } from "../utils/pathResolver.js";
 
-export function count(args) {
+export async function count(args) {
   try {
-    const inputIndex = args.indexOf("--input");
+    const argsObj = argParser(args);
 
-    if (inputIndex === -1) {
+    if (!argsObj["input"]) {
       throw new Error();
     }
 
-    const inputPath = path.resolve(process.cwd(), args[inputIndex + 1]);
+    const inputPath = pathResolver(argsObj["input"]);
 
     if (!fs.existsSync(inputPath)) {
       throw new Error();

@@ -1,22 +1,21 @@
 import fs from "fs";
-import path from "path";
 import { Transform, pipeline } from "stream";
 import { promisify } from "util";
+import { pathResolver } from "../utils/pathResolver.js";
+import { argParser } from "../utils/argParser.js";
 
 const pipe = promisify(pipeline);
 
 export async function jsonToCsv(args) {
   try {
-    const inputIndex = args.indexOf("--input");
-    const outputIndex = args.indexOf("--output");
+    const argsObj = argParser(args);
 
-    if (inputIndex === -1 || outputIndex === -1) {
+      if (!argsObj["input"] || !argsObj["output"]) {
       throw new Error();
     }
 
-    const inputPath = path.resolve(process.cwd(), args[inputIndex + 1]);
-    const outputPath = path.resolve(process.cwd(), args[outputIndex + 1]);
-
+    const inputPath = pathResolver(argsObj["input"]);
+    const outputPath = pathResolver(argsObj["output"]);
     if (!fs.existsSync(inputPath)) {
       throw new Error();
     }

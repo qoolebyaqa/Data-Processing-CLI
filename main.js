@@ -13,14 +13,14 @@ const App = async () => {
 
   rl.prompt();
 
-  rl.on("line", (input) => {
+  rl.on("line", async (input) => {
     const parts = input.trim().split(/\s+/);
     const command = parts[0].toLowerCase();
     const args = parts.slice(1);
     if(command === ".exit") {
       hanldExit(rl);
     } else if (COMMANDS[command]) {
-      COMMANDS[command](args);
+      await COMMANDS[command](args);
       console.log("You are currently in", process.cwd());
       rl.prompt();
     } else {
