@@ -5,7 +5,7 @@ import { promisify } from "util";
 
 const pipe = promisify(pipeline);
 
-export async function csvToJson(rl, args) {
+export async function csvToJson(args) {
   try {
     const inputIndex = args.indexOf("--input");
     const outputIndex = args.indexOf("--output");

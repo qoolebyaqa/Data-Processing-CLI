@@ -20,7 +20,7 @@ const App = async () => {
     if(command === ".exit") {
       hanldExit(rl);
     } else if (COMMANDS[command]) {
-      COMMANDS[command](rl, args);
+      COMMANDS[command](args);
       console.log("You are currently in", process.cwd());
       rl.prompt();
     } else {

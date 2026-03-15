@@ -1,4 +1,7 @@
+import { count } from "./commands/count.js";
 import { csvToJson } from "./commands/csv-to-json.js";
+import { decrypt } from "./commands/decrypt.js";
+import { encrypt } from "./commands/encrypt.js";
 import { jsonToCsv } from "./commands/json-to-csv.js";
 import { ls, up } from "./navigation.js";
 import { cd } from "./navigation.js";
@@ -9,10 +12,10 @@ export const COMMANDS = {
   ls: ls,
  "csv-to-json": csvToJson,
   "json-to-csv": jsonToCsv,
-  /* count: "count",
-  hash: "hash",
+  encrypt: encrypt,
+  decrypt: decrypt,
+  count: count,
+   /* hash: "hash",
   [hash - compare]: "hash-compare",
-  encrypt: "encrypt",
-  decrypt: "decrypt",
   [log - stats]: "log-stats", */
 };

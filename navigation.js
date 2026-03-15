@@ -6,7 +6,7 @@ export function up() {
   process.chdir(path.resolve(process.cwd(), ".."));
 }
 
-export function cd(_rl, args) {
+export function cd(args) {
   const targetPath = args[0].replace(/^['"]|['"]$/g, '');
   if (targetPath) {
     try {
