@@ -1,0 +1,25 @@
+{
+  "name": "my-cli-app",
+  "version": "1.0.0",
+  "description": "RSSchool-node-js-app",
+  "keywords": [
+    "node",
+    "cli",
+    "learning"
+  ],
+  "homepage": "https://github.com/qoolebyaqa/Data-Processing-CLI#readme",
+  "bugs": {
+    "url": "https://github.com/qoolebyaqa/Data-Processing-CLI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qoolebyaqa/Data-Processing-CLI.git"
+  },
+  "license": "ISC",
+  "author": "Artur Ten",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  }
+}
