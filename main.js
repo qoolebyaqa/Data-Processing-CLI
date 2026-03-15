@@ -17,8 +17,9 @@ const App = async () => {
     const parts = input.trim().split(/\s+/);
     const command = parts[0].toLowerCase();
     const args = parts.slice(1);
-    console.log(command, "command", args);
-    if (COMMANDS[command]) {
+    if(command === ".exit") {
+      hanldExit(rl);
+    } else if (COMMANDS[command]) {
       COMMANDS[command](rl, args);
       console.log("You are currently in", process.cwd());
       rl.prompt();
@@ -28,10 +29,12 @@ const App = async () => {
     }
   });
 
-  rl.on("SIGINT", () => {
-    console.log("\nThank you for using Data Processing CLI!");
-    rl.close();
-  });
+  rl.on("SIGINT", () => hanldExit(rl));
 };
 
 await App();
+
+function hanldExit(rl) {
+  console.log("\nThank you for using Data Processing CLI!");
+  rl.close();
+}
