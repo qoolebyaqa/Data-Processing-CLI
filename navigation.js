@@ -24,9 +24,22 @@ export async function ls() {
   try {
     const files = await fs.readdir(process.cwd());
     const stats = await Promise.all(files.map(file => fs.stat(path.join(process.cwd(), file))));
+    const folders = [];
+    const regularFiles = [];
     files.forEach((file, index) => {
-      const type = stats[index].isDirectory() ? '[folder]' : '[file]';
-      console.log(`${file}    ${type}`);
+      if (stats[index].isDirectory()) {
+        folders.push(file);
+      } else {
+        regularFiles.push(file);
+      }
+    });
+    folders.sort();
+    regularFiles.sort();
+    folders.forEach(file => {
+      console.log(`${file}    [folder]`);
+    });
+    regularFiles.forEach(file => {
+      console.log(`${file}    [file]`);
     });
   } catch (err) {
     console.error('Error reading directory:', err);
